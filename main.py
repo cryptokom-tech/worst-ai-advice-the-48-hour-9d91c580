@@ -17,6 +17,9 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
+    # Verify the bytes on disk are exactly the line we meant to submit.
+    with open("/output/entry.txt", "r", encoding="utf-8") as f:
+        assert f.read() == LINE, "entry.txt on disk differs from LINE"
 
 
 if __name__ == "__main__":
